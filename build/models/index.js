@@ -17,6 +17,7 @@ var customizeConfig = {
   },
   timezone: "+07:00"
 };
+console.log('DB_DIALECT:', process.env.DB_DIALECT);
 sequelize = new Sequelize(process.env.DB_DATABASE_NAME, process.env.DB_USERNAME, process.env.DB_PASSWORD, customizeConfig);
 fs.readdirSync(__dirname).filter(function (file) {
   return file.indexOf('.') !== 0 && file !== basename && file.slice(-3) === '.js';

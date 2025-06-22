@@ -24,7 +24,7 @@ sequelize = new Sequelize(
   process.env.DB_PASSWORD,
   customizeConfig
 );
-
+console.log('DB_DIALECT:', process.env.DB_DIALECT);
 fs
   .readdirSync(__dirname)
   .filter(file => {
