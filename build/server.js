@@ -10,7 +10,7 @@ function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default":
 require('dotenv').config();
 var app = (0, _express["default"])();
 app.use((0, _cors["default"])({
-  origin: 'http://localhost:3000',
+  origin: '*',
   credentials: true
 }));
 
