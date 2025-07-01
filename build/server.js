@@ -11,43 +11,38 @@ require('dotenv').config();
 
 var app = (0, _express["default"])();
 
-// ✅ Cấu hình CORS thủ công
+// ✅ Cấu hình CORS chuẩn tay
 app.use((req, res, next) => {
   const allowedOrigins = [
     'http://localhost:3000',
-    'https://thaibinh-test-fe-booking-care.vercel.app'
+    process.env.URL_REACT
   ];
   const origin = req.headers.origin;
+
   if (allowedOrigins.includes(origin)) {
-    res.setHeader('Access-Control-Allow-Origin', origin);
+    res.header('Access-Control-Allow-Origin', origin);
   }
 
-  res.setHeader('Access-Control-Allow-Credentials', 'true');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+  res.header('Access-Control-Allow-Credentials', 'true');
+  res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With');
 
-  // Nếu request là preflight (OPTIONS) thì trả về 200 luôn
   if (req.method === 'OPTIONS') {
-    return res.sendStatus(200);
+    return res.status(200).end();
   }
 
   next();
 });
 
-// Body parser config
-app.use(_bodyParser["default"].json({
-  limit: '50mb'
-}));
-app.use(_bodyParser["default"].urlencoded({
-  limit: '50mb',
-  extended: true
-}));
+// Body parser
+app.use(_bodyParser["default"].json({ limit: '50mb' }));
+app.use(_bodyParser["default"].urlencoded({ limit: '50mb', extended: true }));
 
-// View engine và route
+// View engine và routes
 (0, _viewEngione["default"])(app);
 (0, _web["default"])(app);
 
-// Kết nối DB
+// DB connection
 (0, _connectDB["default"])();
 
 // Start server
