@@ -19,6 +19,8 @@ app.use((req, res, next) => {
   ];
   const origin = req.headers.origin;
 
+  console.log('Origin request:', origin); // 👉 log ngay đầu tiên để mọi request đều log
+
   if (allowedOrigins.includes(origin)) {
     res.header('Access-Control-Allow-Origin', origin);
   }
@@ -30,7 +32,7 @@ app.use((req, res, next) => {
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
   }
-console.log('Origin request:', req.headers.origin);
+
   next();
 });
 
