@@ -15,7 +15,7 @@ var app = (0, _express["default"])();
 app.use((req, res, next) => {
   const allowedOrigins = [
     'http://localhost:3000',
-    process.env.URL_REACT
+    'https://thaibinh-test-fe-booking-care.vercel.app'
   ];
   const origin = req.headers.origin;
 
