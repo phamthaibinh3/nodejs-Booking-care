@@ -12,7 +12,7 @@ var app = (0, _express["default"])();
 app.use((0, _cors["default"])({
   origin: [
     'http://localhost:3000',
-    'https://thaibinh-fe-booking-care.vercel.app'
+    'https://thaibinh-test-fe-booking-care.vercel.app'
   ],
   credentials: true
 }));
