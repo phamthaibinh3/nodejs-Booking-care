@@ -30,7 +30,7 @@ app.use((req, res, next) => {
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
   }
-
+console.log('Origin request:', req.headers.origin);
   next();
 });
 
